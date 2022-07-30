@@ -7,12 +7,12 @@
     <ProjectGuid>{67E3DBDD-5E2C-49ED-97D7-F00BAA02347E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>VRCModUpdater.Core</RootNamespace>
-    <AssemblyName>VRCModUpdater.Core</AssemblyName>
+    <RootNamespace>CVRModUpdater.Core</RootNamespace>
+    <AssemblyName>CVRModUpdater.Core</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
-    <MelonLoaderPath>D:\jeux\Steam\SteamApps\common\VRChat\MelonLoader</MelonLoaderPath>
+    <GamePath>D:\SteamLibrary\steamapps\common\ChilloutVR</GamePath>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
   </PropertyGroup>
@@ -43,7 +43,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="MelonLoader">
-      <HintPath>$(MelonLoaderPath)\MelonLoader.dll</HintPath>
+      <HintPath>$(GamePath)\MelonLoader\MelonLoader.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Microsoft.Build.Framework" />
@@ -61,13 +61,16 @@
       <HintPath>..\packages\Mono.Cecil.0.11.3\lib\net40\Mono.Cecil.Rocks.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.CoreModule">
-      <HintPath>$(MelonLoaderPath)\Managed\UnityEngine.CoreModule.dll</HintPath>
+      <HintPath>$(GamePath)\ChilloutVR_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>$(MelonLoaderPath)\Managed\Newtonsoft.Json.dll</HintPath>
+      <HintPath>$(GamePath)\ChilloutVR_Data\Managed\Newtonsoft.Json.dll</HintPath>
       <Private>False</Private>
     </Reference>
+	<Reference Include="Newtonsoft.Json">
+      <HintPath>$(GamePath)\MelonLoader\Managed\System.Windows.Forms.dll</HintPath>
+	</Reference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -116,7 +119,7 @@
     <Compile Include="Windows\WindowMessage.cs" />
     <Compile Include="Windows\WndClass.cs" />
     <Compile Include="Windows\WndProc.cs" />
-    <Compile Include="VRCModUpdaterCore.cs" />
+    <Compile Include="CVRModUpdaterCore.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -148,16 +151,17 @@
       <InputAssemblies Include="$(OutputPath)/Mono.Cecil.Mdb.dll" />
       <InputAssemblies Include="$(OutputPath)/Mono.Cecil.Pdb.dll" />
       <InputAssemblies Include="$(OutputPath)/Mono.Cecil.Rocks.dll" />
+	  <InputAssemblies Include="$(OutputPath)/System.Windows.Forms.dll" />
       <IlRepackLibs Include="$(OutputPath)" />
-      <IlRepackLibs Include="$(MelonLoaderPath)" />
-      <IlRepackLibs Include="$(MelonLoaderPath)/Managed" />
+      <IlRepackLibs Include="$(GamePath)/MelonLoader" />
+      <IlRepackLibs Include="$(GamePath)/ChilloutVR_Data/Managed" />
     </ItemGroup>
     <Message Text="MERGING: @(InputAssemblies->'%(Filename)') into $(OutputAssembly)" Importance="High" />
     <ILRepack Internalize="true" LibraryPath="@(IlRepackLibs)" OutputFile="$(OutputPath)/$(AssemblyName)-merged.dll" InputAssemblies="@(InputAssemblies)" />
     <Move SourceFiles="$(OutputPath)$(AssemblyName)-merged.dll" DestinationFiles="$(OutputPath)$(AssemblyName).dll" />
   </Target>
   <Target Name="CopyToMods" AfterTargets="ILRepack" Condition="'$(NCrunch)' != '1'">
-    <Message Text="Copying $(OutputPath)$(AssemblyName)-merged.dll to the UserData/VRCModUpdater folder" Importance="high" />
-    <Copy SourceFiles="$(OutputPath)$(AssemblyName).dll" DestinationFiles="$(MelonLoaderPath)\..\UserData\$(AssemblyName).dll" />
+    <Message Text="Copying $(OutputPath)$(AssemblyName).dll (merged) to the UserData/CVRModUpdater folder" Importance="high" />
+    <Copy SourceFiles="$(OutputPath)$(AssemblyName).dll" DestinationFiles="$(GamePath)\UserData\$(AssemblyName).dll" />
   </Target>
 </Project>

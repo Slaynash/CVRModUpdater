@@ -1,16 +1,16 @@
 ﻿using MelonLoader;
 using System.Reflection;
 using System.Runtime.InteropServices;
-using VRCModUpdater.Loader;
+using CVRModUpdater.Loader;
 
 // Les informations générales relatives à un assembly dépendent de
 // l'ensemble d'attributs suivant. Changez les valeurs de ces attributs pour modifier les informations
 // associées à un assembly.
-[assembly: AssemblyTitle("VRCModUpdater.Loader")]
-[assembly: AssemblyDescription("Automatic mod updater plugin for VRChat, using MelonLoader")]
-[assembly: AssemblyCompany("VRChat Modding Group")]
-[assembly: AssemblyProduct("VRCModUpdater")]
-[assembly: AssemblyCopyright("Copyright © Slaynash 2021")]
+[assembly: AssemblyTitle("CVRModUpdater.Loader")]
+[assembly: AssemblyDescription("Automatic mod updater plugin for ChilloutVR, using MelonLoader")]
+[assembly: AssemblyCompany("ChilloutVR Modding Group")]
+[assembly: AssemblyProduct("CVRModUpdater")]
+[assembly: AssemblyCopyright("Copyright © Slaynash 2022")]
 
 // L'affectation de la valeur false à ComVisible rend les types invisibles dans cet assembly
 // aux composants COM. Si vous devez accéder à un type dans cet assembly à partir de
@@ -33,8 +33,8 @@ using VRCModUpdater.Loader;
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
 
-[assembly: MelonInfo(typeof(VRCModUpdaterPlugin), "VRCModUpdater.Loader", VRCModUpdaterPlugin.VERSION, "Slaynash")]
-[assembly: MelonGame("VRChat", "VRChat")]
+[assembly: MelonInfo(typeof(CVRModUpdaterPlugin), "CVRModUpdater.Loader", CVRModUpdaterPlugin.VERSION, "Slaynash")]
+[assembly: MelonGame("Alpha Blend Interactive", "ChilloutVR")]
 
 // ModLoadSeparator runs before us and we need to be first, otherwise it tries loading mods that 
 // we may have moved to the Broken folder

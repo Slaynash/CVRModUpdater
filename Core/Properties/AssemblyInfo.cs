@@ -1,15 +1,15 @@
 ﻿using System.Reflection;
 using System.Runtime.InteropServices;
-using VRCModUpdater.Core;
+using CVRModUpdater.Core;
 
 // Les informations générales relatives à un assembly dépendent de
 // l'ensemble d'attributs suivant. Changez les valeurs de ces attributs pour modifier les informations
 // associées à un assembly.
-[assembly: AssemblyTitle("VRCModUpdater.Core")]
-[assembly: AssemblyDescription("Automatic mod updater plugin for VRChat, using MelonLoader")]
-[assembly: AssemblyCompany("VRChat Modding Group")]
-[assembly: AssemblyProduct("VRCModUpdater")]
-[assembly: AssemblyCopyright("Copyright © Slaynash 2021")]
+[assembly: AssemblyTitle("CVRModUpdater.Core")]
+[assembly: AssemblyDescription("Automatic mod updater plugin for ChilloutVR, using MelonLoader")]
+[assembly: AssemblyCompany("ChilloutVR Modding Group")]
+[assembly: AssemblyProduct("CVRModUpdater")]
+[assembly: AssemblyCopyright("Copyright © Slaynash 2022")]
 
 // L'affectation de la valeur false à ComVisible rend les types invisibles dans cet assembly
 // aux composants COM. Si vous devez accéder à un type dans cet assembly à partir de
@@ -29,5 +29,5 @@ using VRCModUpdater.Core;
 // Vous pouvez spécifier toutes les valeurs ou indiquer les numéros de build et de révision par défaut
 // en utilisant '*', comme indiqué ci-dessous :
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion(VRCModUpdaterCore.VERSION)]
-[assembly: AssemblyFileVersion(VRCModUpdaterCore.VERSION)]
+[assembly: AssemblyVersion(CVRModUpdaterCore.VERSION)]
+[assembly: AssemblyFileVersion(CVRModUpdaterCore.VERSION)]

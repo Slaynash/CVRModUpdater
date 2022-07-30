@@ -1,4 +1,4 @@
-﻿namespace VRCModUpdater.Core
+﻿namespace CVRModUpdater.Core
 {
     public enum FailedUpdateReason
     {

@@ -8,14 +8,16 @@ using System.Linq;
 using System.Net;
 using System.Reflection;
 
-namespace VRCModUpdater.Loader
+namespace CVRModUpdater.Loader
 {
-    public class VRCModUpdaterPlugin : MelonPlugin
+    public class CVRModUpdaterPlugin : MelonPlugin
     {
-        public const string VERSION = "1.0.4";
+        internal const string VERSION = "1.0.5";
+
+        public static string Version => VERSION;
 
         string targetDirectoryPath  = Path.Combine(MelonHandler.ModsDirectory, "..", "UserData");
-        string targetFilePath       = Path.Combine(MelonHandler.ModsDirectory, "..", "UserData", "VRCModUpdater.Core.dll");
+        string targetFilePath       = Path.Combine(MelonHandler.ModsDirectory, "..", "UserData", "CVRModUpdater.Core.dll");
 
         public override void OnApplicationStart()
         {
@@ -30,7 +32,7 @@ namespace VRCModUpdater.Loader
                     return;
                 }
                 else
-                    MelonLogger.Warning("No VRCModUpdater.Core found");
+                    MelonLogger.Warning("No CVRModUpdater.Core found");
 
             }
             MelonLogger.Msg("Checking latest version for github");
@@ -38,11 +40,11 @@ namespace VRCModUpdater.Loader
             string latestVersion = GetLatestVersion();
             if (latestVersion == null)
             {
-                MelonLogger.Error("Failed to fetch latest VRCModUpdater.Core version");
+                MelonLogger.Error("Failed to fetch latest CVRModUpdater.Core version");
                 TryStartCore();
                 return;
             }
-            MelonLogger.Msg("Latest VRCModUpdater.Core version: " + latestVersion);
+            MelonLogger.Msg("Latest CVRModUpdater.Core version: " + latestVersion);
 
             string assemblyVersion = null;
             if (File.Exists(targetFilePath))
@@ -54,11 +56,11 @@ namespace VRCModUpdater.Loader
                         CustomAttribute melonInfoAttribute = assembly.CustomAttributes.First(a => a.AttributeType.Name == "AssemblyFileVersionAttribute");
                         assemblyVersion = melonInfoAttribute.ConstructorArguments[0].Value as string;
                     }
-                    MelonLogger.Msg("Installed VRCModUpdater.Core version: " + assemblyVersion);
+                    MelonLogger.Msg("Installed CVRModUpdater.Core version: " + assemblyVersion);
                 }
                 catch (Exception e)
                 {
-                    MelonLogger.Error("Failed to load VRCModUpdater.Core. Redownloading.\n" + e);
+                    MelonLogger.Error("Failed to load CVRModUpdater.Core. Redownloading.\n" + e);
                 }
             }
 
@@ -74,11 +76,11 @@ namespace VRCModUpdater.Loader
             string githubResponse;
             try
             {
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://api.github.com/repos/Slaynash/VRCModUpdater/releases/latest");
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://api.github.com/repos/Slaynash/CVRModUpdater/releases/latest");
                 request.Method = "GET";
                 request.KeepAlive = true;
                 request.ContentType = "application/x-www-form-urlencoded";
-                request.UserAgent = $"VRCModUpdater/{VERSION}";
+                request.UserAgent = $"CVRModUpdater/{VERSION}";
                 HttpWebResponse response = (HttpWebResponse)request.GetResponse();
                 using (StreamReader requestReader = new StreamReader(response.GetResponseStream()))
                 {
@@ -98,12 +100,12 @@ namespace VRCModUpdater.Loader
 
         private void UpdateCore(string version)
         {
-            MelonLogger.Msg("Downloading VRCModUpdater.Core");
+            MelonLogger.Msg("Downloading CVRModUpdater.Core");
 
             byte[] data;
             using (WebClient wc = new WebClient())
             {
-                data = wc.DownloadData($"https://github.com/Slaynash/VRCModUpdater/releases/download/{version}/VRCModUpdater.Core.dll");
+                data = wc.DownloadData($"https://github.com/Slaynash/CVRModUpdater/releases/download/{version}/CVRModUpdater.Core.dll");
             }
 
             File.WriteAllBytes(targetFilePath, data);
@@ -114,10 +116,10 @@ namespace VRCModUpdater.Loader
             if (File.Exists(targetFilePath))
             {
                 Assembly assembly = System.Reflection.Assembly.LoadFile(targetFilePath);
-                assembly.GetType("VRCModUpdater.Core.VRCModUpdaterCore").GetMethod("Start").Invoke(null, null);
+                assembly.GetType("CVRModUpdater.Core.CVRModUpdaterCore").GetMethod("Start").Invoke(null, null);
             }
             else
-                MelonLogger.Warning("No VRCModUpdater.Core found");
+                MelonLogger.Warning("No CVRModUpdater.Core found");
         }
     }
 }

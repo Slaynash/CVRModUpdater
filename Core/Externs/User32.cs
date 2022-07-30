@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 using Windef;
 using Winuser;
 
-namespace VRCModUpdater.Core.Externs
+namespace CVRModUpdater.Core.Externs
 {
     public static class User32
     {

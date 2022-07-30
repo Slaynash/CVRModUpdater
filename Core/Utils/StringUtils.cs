@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace VRCModUpdater.Utils
+namespace CVRModUpdater.Utils
 {
     public static class StringUtils
     {

@@ -9,17 +9,18 @@ using System.Net;
 using System.Security.Cryptography;
 using System.Threading;
 using System.Windows.Forms;
-using VRCModUpdater.API;
-using VRCModUpdater.Core.API;
-using VRCModUpdater.Core.Externs;
-using VRCModUpdater.Core.Utils;
+using CVRModUpdater.API;
+using CVRModUpdater.Core.API;
+using CVRModUpdater.Core.Externs;
+using CVRModUpdater.Core.Utils;
 using Winuser;
 
-namespace VRCModUpdater.Core
+namespace CVRModUpdater.Core
 {
-    public static class VRCModUpdaterCore
+    public static class CVRModUpdaterCore
     {
-        public const string VERSION = "1.0.6";
+        internal const string VERSION = "1.0.7";
+        public static string Version => VERSION;
 
         private static readonly Dictionary<string, string> oldToNewModNames = new Dictionary<string, string>()
         {
@@ -46,7 +47,7 @@ namespace VRCModUpdater.Core
 
         public static void Start()
         {
-            var prefCategory = MelonPreferences.CreateCategory("VRCModUpdater");
+            var prefCategory = MelonPreferences.CreateCategory("CVRModUpdater");
             var diplayTimeEntry = prefCategory.CreateEntry("displaytime", postUpdateDisplayDuration, "Display time (seconds)");
             toFromBroken = prefCategory.CreateEntry("toFromBroken", true, "Attempt to move mods to and from Broken mods folder based on status in Remote API");
             resolveDependencies = prefCategory.CreateEntry("resolveDependencies", true, "Attempt to download missing required dependencies");
@@ -72,7 +73,7 @@ namespace VRCModUpdater.Core
                 isUpdatingMods = false;
             })
             {
-                Name = "VRCModUpdater",
+                Name = "CVRModUpdater",
                 IsBackground = true
             }.Start();
 
@@ -372,7 +373,7 @@ namespace VRCModUpdater.Core
                             toBrokenList.Add("   " + installedMod.Key);
                         }
                         else
-                            MelonLogger.Msg($"Ignoring as local version is higer than remote. Remote: {remoteMod.version}, Local: {installedMod.Value.version}");
+                            MelonLogger.Msg($"Ignoring as local version is higher than remote. Remote: {remoteMod.version}, Local: {installedMod.Value.version}");
                         continue;
                     }
                     MelonLogger.Msg("(Mod: " + remoteMod.name + ") version compare between [remote] " + remoteMod.version + " and [local] " + installedMod.Value.version + ": " + compareResult);
@@ -565,7 +566,7 @@ namespace VRCModUpdater.Core
         private static void SpawnMessage()
         {
             if (msg != null)
-                MessageBox.Show(new Form { TopMost = true }, msg, "VRCModUpdater");
+                MessageBox.Show(new Form { TopMost = true }, msg, "CVRModUpdater");
         }
     }
 }

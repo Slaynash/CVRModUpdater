@@ -5,13 +5,13 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
-using VRCModUpdater.Core.Externs;
-using VRCModUpdater.Loader;
+using CVRModUpdater.Core.Externs;
+using CVRModUpdater.Loader;
 using Windef;
 using WinGDI;
 using Winuser;
 
-namespace VRCModUpdater.Core
+namespace CVRModUpdater.Core
 {
     class UpdaterWindow
     {
@@ -44,7 +44,7 @@ namespace VRCModUpdater.Core
             CheckLemonTheme();
 
             IntPtr hInstance = Process.GetCurrentProcess().Handle;
-            string szClassName = "VRCModUpdaterWinClass";
+            string szClassName = "CVRModUpdaterWinClass";
 
             WndClass wc = default;
 
@@ -79,7 +79,7 @@ namespace VRCModUpdater.Core
             hWindow = User32.CreateWindowEx(
                 0,                                  // Optional window styles.
                 szClassName,                        // Window class
-                "VRCModUpdater",                    // Window text
+                "CVRModUpdater",                    // Window text
                 WindowStyles.WS_POPUPWINDOW,        // Window style
 
                 // Size and position
@@ -222,18 +222,18 @@ namespace VRCModUpdater.Core
 
                     GDI.SetBkMode(hdc, BackgroundMode.TRANSPARENT);
                     GDI.SelectObject(hdc, hProgressbarFont);
-                    DrawProgressBar(hdc, VRCModUpdaterCore.progressTotal, VRCModUpdaterCore.currentStatus, 40, rect.Bottom - 100, rect.Right - 40, rect.Bottom - 70);
-                    DrawProgressBar(hdc, VRCModUpdaterCore.progressDownload, null, 40, rect.Bottom - 60, rect.Right - 40, rect.Bottom - 30);
+                    DrawProgressBar(hdc, CVRModUpdaterCore.progressTotal, CVRModUpdaterCore.currentStatus, 40, rect.Bottom - 100, rect.Right - 40, rect.Bottom - 70);
+                    DrawProgressBar(hdc, CVRModUpdaterCore.progressDownload, null, 40, rect.Bottom - 60, rect.Right - 40, rect.Bottom - 30);
 
                     // Text
                     GDI.SetBkMode(hdc, BackgroundMode.OPAQUE);
                     Rect titleRect = new Rect(ps.rcPaint.Left + 5, ps.rcPaint.Top + 5, ps.rcPaint.Right - 5, ps.rcPaint.Top + 125 - 5);
                     GDI.SelectObject(hdc, hTitleFont);
-                    User32.DrawText(hdc, "VRCModUpdater", -1, ref titleRect, DrawText.SINGLELINE | DrawText.CENTER | DrawText.VCENTER);
+                    User32.DrawText(hdc, "CVRModUpdater", -1, ref titleRect, DrawText.SINGLELINE | DrawText.CENTER | DrawText.VCENTER);
 
                     GDI.SelectObject(hdc, hTextFont);
-                    User32.DrawText(hdc, $"Loader v{VRCModUpdaterPlugin.VERSION}\nCore v{VRCModUpdaterCore.VERSION}", -1, ref titleRect, DrawText.LEFT | DrawText.TOP);
-                    User32.DrawText(hdc, $"MelonLoader {BuildInfo.Version}\nVRChat {UnityEngine.Application.version}", -1, ref titleRect, DrawText.RIGHT | DrawText.TOP);
+                    User32.DrawText(hdc, $"Loader v{CVRModUpdaterPlugin.Version}\nCore v{CVRModUpdaterCore.Version}", -1, ref titleRect, DrawText.LEFT | DrawText.TOP);
+                    User32.DrawText(hdc, $"MelonLoader {BuildInfo.Version}\nChilloutVR {UnityEngine.Application.version}", -1, ref titleRect, DrawText.RIGHT | DrawText.TOP);
 
                     // End paint
                     User32.EndPaint(hWnd, ref ps);

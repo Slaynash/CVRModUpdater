@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Reflection;
 
-namespace VRCModUpdater.Utils
+namespace CVRModUpdater.Utils
 {
     public static class ReflectionUtils
     {

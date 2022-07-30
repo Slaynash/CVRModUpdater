@@ -1,4 +1,4 @@
-﻿namespace VRCModUpdater.API
+﻿namespace CVRModUpdater.API
 {
     public class APIMod
     {

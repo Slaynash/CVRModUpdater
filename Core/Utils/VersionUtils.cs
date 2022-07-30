@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace VRCModUpdater.Core.Utils
+namespace CVRModUpdater.Core.Utils
 {
     public static class VersionUtils
     {

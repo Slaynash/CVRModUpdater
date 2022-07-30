@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-namespace VRCModUpdater.Core.Externs
+namespace CVRModUpdater.Core.Externs
 {
     public static class Il2Cpp
     {
