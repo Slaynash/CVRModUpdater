@@ -19,7 +19,7 @@ namespace CVRModUpdater.Loader
         string targetDirectoryPath  = Path.Combine(MelonHandler.ModsDirectory, "..", "UserData");
         string targetFilePath       = Path.Combine(MelonHandler.ModsDirectory, "..", "UserData", "CVRModUpdater.Core.dll");
 
-        public override void OnApplicationStart()
+        public override void OnApplicationEarlyStart()
         {
 
             if (Environment.GetCommandLineArgs().Contains("--updater-dev"))
