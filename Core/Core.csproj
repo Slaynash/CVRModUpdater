@@ -9,12 +9,13 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CVRModUpdater.Core</RootNamespace>
     <AssemblyName>CVRModUpdater.Core</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <GamePath>D:\SteamLibrary\steamapps\common\ChilloutVR</GamePath>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -43,7 +44,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="MelonLoader">
-      <HintPath>$(GamePath)\MelonLoader\MelonLoader.dll</HintPath>
+      <HintPath>$(GamePath)\MelonLoader\net35\MelonLoader.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Microsoft.Build.Framework" />
@@ -60,6 +61,7 @@
     <Reference Include="Mono.Cecil.Rocks, Version=0.11.3.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e, processorArchitecture=MSIL">
       <HintPath>..\packages\Mono.Cecil.0.11.3\lib\net40\Mono.Cecil.Rocks.dll</HintPath>
     </Reference>
+    <Reference Include="System.Drawing" />
     <Reference Include="UnityEngine.CoreModule">
       <HintPath>$(GamePath)\ChilloutVR_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
       <Private>False</Private>
@@ -68,9 +70,6 @@
       <HintPath>$(GamePath)\ChilloutVR_Data\Managed\Newtonsoft.Json.dll</HintPath>
       <Private>False</Private>
     </Reference>
-	<Reference Include="Newtonsoft.Json">
-      <HintPath>$(GamePath)\MelonLoader\Managed\System.Windows.Forms.dll</HintPath>
-	</Reference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -151,9 +150,8 @@
       <InputAssemblies Include="$(OutputPath)/Mono.Cecil.Mdb.dll" />
       <InputAssemblies Include="$(OutputPath)/Mono.Cecil.Pdb.dll" />
       <InputAssemblies Include="$(OutputPath)/Mono.Cecil.Rocks.dll" />
-	  <InputAssemblies Include="$(OutputPath)/System.Windows.Forms.dll" />
       <IlRepackLibs Include="$(OutputPath)" />
-      <IlRepackLibs Include="$(GamePath)/MelonLoader" />
+      <IlRepackLibs Include="$(GamePath)/MelonLoader/net35" />
       <IlRepackLibs Include="$(GamePath)/ChilloutVR_Data/Managed" />
     </ItemGroup>
     <Message Text="MERGING: @(InputAssemblies->'%(Filename)') into $(OutputAssembly)" Importance="High" />
