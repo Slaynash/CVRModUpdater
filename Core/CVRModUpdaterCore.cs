@@ -8,7 +8,7 @@ using System.Linq;
 using System.Net;
 using System.Security.Cryptography;
 using System.Threading;
-using System.Windows.Forms;
+using System.Runtime.InteropServices;
 using CVRModUpdater.API;
 using CVRModUpdater.Core.API;
 using CVRModUpdater.Core.Externs;
@@ -19,7 +19,7 @@ namespace CVRModUpdater.Core
 {
     public static class CVRModUpdaterCore
     {
-        internal const string VERSION = "1.0.7";
+        internal const string VERSION = "1.0.8";
         public static string Version => VERSION;
 
         private static readonly Dictionary<string, string> oldToNewModNames = new Dictionary<string, string>()
@@ -44,6 +44,9 @@ namespace CVRModUpdater.Core
         private static List<FailedUpdateInfo> failedUpdates = new List<FailedUpdateInfo>();
 
         private static MelonPreferences_Entry<bool> toFromBroken, resolveDependencies, resolveOptionalDependencies, popUpMsg;
+
+        [DllImport("User32.dll", CharSet = CharSet.Unicode)] //Removes dependency for System.Windows.Forms but keeps same functionality 
+        private static extern int MessageBox(IntPtr nWnd, string text, string title, uint type);
 
         public static void Start()
         {
@@ -565,8 +568,10 @@ namespace CVRModUpdater.Core
 
         private static void SpawnMessage()
         {
-            if (msg != null)
-                MessageBox.Show(new Form { TopMost = true }, msg, "CVRModUpdater");
+            if (msg != null) 
+                MessageBox(IntPtr.Zero, msg, "CVRModUpdater", 0x40000 | 0x40 | 0x10000 | 0x1000);
+            // https://www.autoitscript.com/autoit3/docs/functions/MsgBox.htm
+            // 0x40000 - MsgBox() has top-most attribute set | 0x40 - Information-sign icon consisting of an 'i' in a circle | 0x10000 - The message box becomes the foreground window. | 0x1000 System modal 
         }
     }
 }

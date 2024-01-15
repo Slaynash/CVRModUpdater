@@ -33,7 +33,7 @@ using CVRModUpdater.Loader;
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
 
-[assembly: MelonInfo(typeof(CVRModUpdaterPlugin), "CVRModUpdater.Loader", CVRModUpdaterPlugin.VERSION, "Slaynash")]
+[assembly: MelonInfo(typeof(CVRModUpdaterPlugin), "CVRModUpdater.Loader", CVRModUpdaterPlugin.VERSION, "Nirvash, Slaynash")]
 [assembly: MelonGame("Alpha Blend Interactive", "ChilloutVR")]
 
 // ModLoadSeparator runs before us and we need to be first, otherwise it tries loading mods that 

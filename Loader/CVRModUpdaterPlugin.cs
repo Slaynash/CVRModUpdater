@@ -12,7 +12,7 @@ namespace CVRModUpdater.Loader
 {
     public class CVRModUpdaterPlugin : MelonPlugin
     {
-        internal const string VERSION = "1.0.5";
+        internal const string VERSION = "1.0.8";
 
         public static string Version => VERSION;
 
@@ -76,7 +76,7 @@ namespace CVRModUpdater.Loader
             string githubResponse;
             try
             {
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://api.github.com/repos/Slaynash/CVRModUpdater/releases/latest");
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://api.github.com/repos/Nirv-git/CVRModUpdater/releases/latest");
                 request.Method = "GET";
                 request.KeepAlive = true;
                 request.ContentType = "application/x-www-form-urlencoded";
@@ -105,7 +105,7 @@ namespace CVRModUpdater.Loader
             byte[] data;
             using (WebClient wc = new WebClient())
             {
-                data = wc.DownloadData($"https://github.com/Slaynash/CVRModUpdater/releases/download/{version}/CVRModUpdater.Core.dll");
+                data = wc.DownloadData($"https://github.com/Nirv-git/CVRModUpdater/releases/download/{version}/CVRModUpdater.Core.dll");
             }
 
             File.WriteAllBytes(targetFilePath, data);
